@@ -3,7 +3,7 @@
 Clone the repo
 
 ```sh
-git clone https://github.com/Chabloz/a-frame-48-cours.git .
+git clone https://github.com/Chabloz/webmobui-49-1.git .
 ```
 
 Install dependencies
