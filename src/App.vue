@@ -1,6 +1,7 @@
 <script setup>
   import { ref, computed, watchEffect } from 'vue';
  import BaseButton from './components/BaseButton.vue';
+ import TheNav from './components/TheNav.vue';
 
   const tempSi = ref(0); // kelvin
 
@@ -42,24 +43,34 @@
 
   const pi = Math.PI;
 
+  const page = ref('home');
+
+   watchEffect(() => {
+    console.log(page.value)
+  });
+
 </script>
 
 <template>
 
-  <h1>Temperatures converter</h1>
-  <div>Celsius: </div>
-  <div :class="msgTemp"> {{ showCelsius(celsius) }}</div>
-  <div>{{ msgTemp }}</div>
-  <div>Kelvin: </div>
-  <div>{{ kelvin }}</div>
-  <div>{{ fahrenheit }}</div>
-  <div>{{ pi }}</div>
-  <base-button class="alert" :temperature="celsius">
-    <b>Delete</b>
-  </base-button>
-  <base-button></base-button>
-  <base-button>Btn 3</base-button>
-  <div v-if="celsius < 10 ">Attention c'est trop froid</div>
+  <the-nav @page-change="page = $event"></the-nav>
+
+  <div v-show="page == 'temp'">
+    <h1>Temperatures converter</h1>
+    <div>Celsius: </div>
+    <div :class="msgTemp"> {{ showCelsius(celsius) }}</div>
+    <div>{{ msgTemp }}</div>
+    <div>Kelvin: </div>
+    <div>{{ kelvin }}</div>
+    <div>{{ fahrenheit }}</div>
+    <div>{{ pi }}</div>
+    <base-button class="alert" :temperature="celsius">
+      <b>Delete</b>
+    </base-button>
+    <base-button></base-button>
+    <base-button>Btn 3</base-button>
+    <div v-if="celsius < 10 ">Attention c'est trop froid</div>
+  </div>
 
 </template>
 
