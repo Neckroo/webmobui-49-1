@@ -1,31 +1,26 @@
 <script setup>
-  import { ref } from "@vue/reactivity";
-  import { watchEffect } from "@vue/runtime-core";
+  import { page } from '../state.js';
 
-  const emits = defineEmits([
-    "page-change"
-  ]);
+  window.addEventListener('hashchange', () => {
+    page.value = window.location.hash;
+  })
 
-  const page = ref('home');
-  watchEffect(() => {
-    emits("page-change", page.value);
-  });
-
+  page.value = window.location.hash || '#home';
 </script>
 
 <template>
   <nav>
     <ul>
       <li>
-        <a href="#temp" @click="page='temp'">Temp</a>
+          <a href="#home">Home</a>
       </li>
       <li>
-          <a href="#byte"  @click="page='byte'">Byte</a>
+          <a href="#temprature">Temperature</a>
       </li>
     </ul>
   </nav>
 </template>
 
-<style scoped>
+<style>
 
 </style>
